@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+  <h1>Sreen Time Earned</h1>
+<div class="container">
+
+  <table id="users">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Minutes</th>
+        <%# <th>Last Updated</th> %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.sort_by(&:name).each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.screen_time %></td>
+          <%# <td><%= user.updated_at.in_time_zone("America/Los_Angeles").strftime("%m/%d/%Y %H:%M") %1></td> %>
+          <td><%= button_to "Add", increment_user_path(user), method: :post, form_class: "add-btn" %></td>
+          <td><%= button_to "Subtract", decrement_user_path(user), method: :post, form_class: "subtract-btn" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
